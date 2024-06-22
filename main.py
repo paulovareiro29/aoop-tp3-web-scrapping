@@ -23,6 +23,7 @@ time.sleep(5)
 
 cryptocurrencies = ["bitcoin", "ethereum"]
 sentiments = ["bullish", "bearish"]
+limit_per_scrapping = 100
 
 collected_tweets = set()
 
@@ -36,7 +37,7 @@ for cryptocurrency in cryptocurrencies:
         search_by_keywords(driver, [cryptocurrency, sentiment])
         time.sleep(10)
         
-        tweets = scrap_tweets(driver, 10)
+        tweets = scrap_tweets(driver, limit_per_scrapping)
         
         with open('./data.csv', mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
