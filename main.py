@@ -29,7 +29,7 @@ collected_tweets = set()
 
 with open('./data.csv', mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
-    writer.writerow(["Cryptocurrency", "Sentiment", "Tweet"])
+    writer.writerow(["Cryptocurrency", "Sentiment", "Tweet", "Datetime"])
     file.close()
 
 for cryptocurrency in cryptocurrencies:
@@ -42,7 +42,7 @@ for cryptocurrency in cryptocurrencies:
         with open('./data.csv', mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             for tweet in tweets:
-                writer.writerow([cryptocurrency, sentiment, tweet])
+                writer.writerow([cryptocurrency, sentiment, tweet[0], tweet[1]])
 
 time.sleep(10)
 

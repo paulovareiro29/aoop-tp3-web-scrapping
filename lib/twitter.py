@@ -86,9 +86,12 @@ def scrap_tweets(driver, limit = 100):
     for tweet in tweets:
       try:
         tweet_text = sanitize_tweet(tweet.find_element(By.XPATH, './/div[@data-testid="tweetText"]').text)
+        tweet_date = tweet.find_element(By.XPATH, './/time').get_attribute('datetime')
         
-        if is_valid_tweet(tweet_text) and tweet_text not in scrapped_tweets:
-            scrapped_tweets.add(tweet_text)
+        tweet_object = (tweet_text, tweet_date)
+        
+        if is_valid_tweet(tweet_text) and tweet_object not in scrapped_tweets:
+            scrapped_tweets.add(tweet_object)
 
       except Exception as e:
         print(e)
